@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,11 +15,12 @@ public class AIController : MonoBehaviour
     public NavMeshAgent agent;
 
     private bool changedTarget = false;
-
+    private float ChickenTimer = 0;
+    private float timeBeforeChangingDirection = 0;
 
     private void Awake()
     {
-        role = roleList[Random.Range(0, roleList.Length)]; // Assign random role to AI
+        //role = roleList[Random.Range(0, roleList.Length)]; // Assign random role to AI
         gameObject.tag = role;
     }
 
@@ -57,12 +59,18 @@ public class AIController : MonoBehaviour
 
         if (role == "Chicken") 
         {
-            target = new Vector3((transform.position.x + Random.Range(-1, 1)), transform.position.y, (transform.position.z + Random.Range(-1, 1)));
+            if (ChickenTimer > timeBeforeChangingDirection) 
+            {
+                ChickenTimer -= 3;
+                timeBeforeChangingDirection = Random.Range(1, 4);
+                target = new Vector3((transform.position.x + Random.Range(-10, 10)), transform.position.y, (transform.position.z + Random.Range(-10, 10)));
+            }
+            ChickenTimer += Time.deltaTime;
             for (int i = 0; i < wolfList.Length; i++)
             {
                 if (Vector3.Distance(transform.position, wolfList[i].transform.position) < 5) 
                 {
-                    target = -(wolfList[i].transform.position - transform.position);
+                    target = -(wolfList[i].transform.position - transform.position) + transform.position;
                     break;
                 }
             }

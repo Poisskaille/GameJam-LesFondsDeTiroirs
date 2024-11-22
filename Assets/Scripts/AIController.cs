@@ -52,6 +52,12 @@ public class AIController : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
+
     void Update()
     {
 
@@ -66,6 +72,7 @@ public class AIController : MonoBehaviour
                     target = chickenList[i].transform.position;
                 }
             }
+
             agent.SetDestination(target);
         }
 

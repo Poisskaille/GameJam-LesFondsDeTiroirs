@@ -33,6 +33,10 @@ public class Main : MonoBehaviour
     private int seconds;
     private float pauseBetweenWaves;
 
+    // -- Prefab -- //
+    public GameObject prefabIA;
+    public AIController AIController;
+
     // --- FONCTIONS D'INITIALISATION --- //
     private void InitTimers()
     {
@@ -57,11 +61,18 @@ public class Main : MonoBehaviour
         {
             int tempID = rand.Next(1, numberOfPlayers);
             characters[tempID, 1] = WOLF_ROLE_ID; // Choisir 3 loups random
+
+            GameObject wolf = Instantiate(prefabIA, new Vector3(UnityEngine.Random.Range(10, 60), 21, UnityEngine.Random.Range(20, 80)), Quaternion.identity);
+            AIController wolfScript = wolf.GetComponent<AIController>();
+            wolfScript.OnSpawn("Wolf");
         }
         for (int i = 0; i < numberOfPlayers; i++)
         {
             if (characters[i, 1] != WOLF_ROLE_ID)
                 characters[i, 1] = SHEEP_ROLE_ID;
+                GameObject chicken = Instantiate(prefabIA, new Vector3(UnityEngine.Random.Range(10, 60), 21, UnityEngine.Random.Range(20, 80)), Quaternion.identity);
+                AIController chickenScript = chicken.GetComponent<AIController>();
+                chickenScript.OnSpawn("Chicken");
         }
     } // Nomme trois loups aléatoirement
 

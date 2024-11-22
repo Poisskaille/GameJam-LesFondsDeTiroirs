@@ -23,9 +23,9 @@ public class AIController : MonoBehaviour
 
     private float timeSinceLastColision = 0;
 
-    private void Awake()
+    public void OnSpawn(string roleToGive)
     {
-        //role = roleList[Random.Range(0, roleList.Length)]; // Assign random role to AI
+        role = roleToGive;
         gameObject.tag = role;
         if (role == "Chicken") 
         {
@@ -34,6 +34,7 @@ public class AIController : MonoBehaviour
         if (role == "Wolf") 
         {
             gameObject.GetComponent<MeshRenderer>().material = wolfMaterial;
+            gameObject.GetComponent<NavMeshAgent>().speed = 10;
         }
 
     }
@@ -41,12 +42,12 @@ public class AIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.rotation = Quaternion.Euler(90, 90, 0);
         chickenList = GameObject.FindGameObjectsWithTag("Chicken");
         wolfList = GameObject.FindGameObjectsWithTag("Wolf");
         agent = GetComponent<NavMeshAgent>();
         
         agent.SetDestination(target);
+        
     }
 
     // Update is called once per frame

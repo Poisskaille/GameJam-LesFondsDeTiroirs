@@ -290,6 +290,8 @@ MonoBehaviour:
   time: {fileID: 7875012537115981437}
   waitingBetweenWaves: {fileID: 5601228788054162204}
   gameOverText: {fileID: 2900307553165642845}
+  prefabIA: {fileID: 2824731302842451343, guid: 2196ee2f58365bc44b0b8193588930f1,
+    type: 3}
 --- !u!1 &6454491920302567505
 GameObject:
   m_ObjectHideFlags: 0

@@ -145,6 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c235afca8d2997f41a369fcaff25e5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  role: 
   chickenList: []
-  target: {fileID: 0}
+  wolfList: []
+  target: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
+  chickenMaterial: {fileID: 2100000, guid: 42175121f045a504486b907f58357fd9, type: 2}
+  wolfMaterial: {fileID: 2100000, guid: 529b74f2d31ab6040be4c639b5939662, type: 2}

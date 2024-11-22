@@ -18,10 +18,22 @@ public class AIController : MonoBehaviour
     private float ChickenTimer = 0;
     private float timeBeforeChangingDirection = 0;
 
+    public Material chickenMaterial;
+    public Material wolfMaterial;
+
     private void Awake()
     {
         //role = roleList[Random.Range(0, roleList.Length)]; // Assign random role to AI
         gameObject.tag = role;
+        if (role == "Chicken") 
+        {
+            gameObject.GetComponent<MeshRenderer>().material = chickenMaterial;
+        }
+        if (role == "Wolf") 
+        {
+            gameObject.GetComponent<MeshRenderer>().material = wolfMaterial;
+        }
+
     }
 
     // Start is called before the first frame update

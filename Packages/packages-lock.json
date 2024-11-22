@@ -1,11 +1,20 @@
 {
   "dependencies": {
-    "com.unity.adaptiveperformance": {
+      "com.unity.adaptiveperformance": {
       "version": "5.1.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.profiling.core": "1.0.2"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ai.navigation": {
+      "version": "2.0.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.ai": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -19,6 +28,7 @@
       },
       "url": "https://packages.unity.com"
     },
+
     "com.unity.collab-proxy": {
       "version": "2.5.2",
       "depth": 0,

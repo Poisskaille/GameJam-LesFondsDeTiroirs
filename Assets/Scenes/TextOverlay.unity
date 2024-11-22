@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -504,13 +504,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce5555cc57c844428a027d4402084eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfPlayers: 18
+  numberOfWolves: 3
   GlobalTimer: 0
   timer: 0
   waveText: {fileID: 947600527}
   time: {fileID: 434267063}
   waitingBetweenWaves: {fileID: 906620715}
   gameOverText: {fileID: 218812369}
-  numberOfWolves: 3
 --- !u!4 &645304291
 Transform:
   m_ObjectHideFlags: 0
@@ -659,18 +660,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 70
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 50
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Nouvelle vague dans [seconds]'
+  m_Text: 3...2...1
 --- !u!222 &906620716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -695,8 +696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 7, y: -343}
-  m_SizeDelta: {x: 400, y: 70}
+  m_AnchoredPosition: {x: 7, y: -364}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &947600524
 GameObject:
@@ -776,7 +777,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Vagues pass\xE9es : 0/9"
+  m_Text: 'Vague : 1/5'
 --- !u!1 &1271098753
 GameObject:
   m_ObjectHideFlags: 0

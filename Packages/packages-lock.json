@@ -1,6 +1,12 @@
 {
   "dependencies": {
-      "com.unity.adaptiveperformance": {
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.adaptiveperformance": {
       "version": "5.1.0",
       "depth": 1,
       "source": "registry",
@@ -28,7 +34,6 @@
       },
       "url": "https://packages.unity.com"
     },
-
     "com.unity.collab-proxy": {
       "version": "2.5.2",
       "depth": 0,

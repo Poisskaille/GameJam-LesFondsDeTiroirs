@@ -1,0 +1,9 @@
+Begin Object Class=/Script/Engine.Skeleton Name="SKEL_Sheep" ExportPath="/Script/Engine.Skeleton'/Game/StylizedCreaturesBundle/Meshes/Sheep/SKEL_Sheep.SKEL_Sheep'"
+   Begin Object Class=/Script/Engine.AnimCurveMetaData Name="AnimCurveMetaData_0" ExportPath="/Script/Engine.AnimCurveMetaData'/Game/StylizedCreaturesBundle/Meshes/Sheep/SKEL_Sheep.SKEL_Sheep:AnimCurveMetaData_0'"
+   End Object
+   Begin Object Name="AnimCurveMetaData_0" ExportPath="/Script/Engine.AnimCurveMetaData'/Game/StylizedCreaturesBundle/Meshes/Sheep/SKEL_Sheep.SKEL_Sheep:AnimCurveMetaData_0'"
+   End Object
+   BoneTree(38)=()
+   PreviewSkeletalMesh="/Game/StylizedCreaturesBundle/Meshes/Sheep/SK_Sheep.SK_Sheep"
+   AssetUserData(0)="/Script/Engine.AnimCurveMetaData'AnimCurveMetaData_0'"
+End Object

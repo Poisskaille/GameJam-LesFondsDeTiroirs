@@ -7,35 +7,48 @@ using UnityEngine.UI;
 public class Main : MonoBehaviour
 {
     private const int MAX_GAME_DURATION = 40;      // 3 minutes / partie
-    private const int WAVE_TIMER = 20;             // 20 secondes / vague
-    private const float TIMING_BETWEEN_WAVES = 3f; // 3 secondes de pause entre les vagues
+    private const int WAVE_TIMER = 20;              // 20 secondes / vague
+    private const float TIMING_BETWEEN_WAVES = 3f;  // 3 secondes de pause entre les vagues
     private bool isWaveDelayCounterStarted = false;
     public float GlobalTimer;
-    public int wavePassed = 0;
     public float timer;
-    public int seconds;
-    public float durationBetweenWaves;
+    private int wavePassed = 0;
+    private int prevWave = 0;
+    private int seconds;
+    private float durationBetweenWaves;
     public Text waveText;
     public Text time;
     public Text waitingBetweenWaves;
     public Text gameOverText;
+    // --- Venant d'autres fichiers dans la version finale --- //
+    public int[,] characters = new int[15,15];
+    public int numberOfWolves = 3;
 
     // Start is called before the first frame update
     void Start()
     {
+        durationBetweenWaves = TIMING_BETWEEN_WAVES;
         GlobalTimer = MAX_GAME_DURATION;
         timer = WAVE_TIMER;
-        durationBetweenWaves = TIMING_BETWEEN_WAVES;
-        waitingBetweenWaves.text = "";
         waveText.text = "Vagues passées : 0/9";
+        waitingBetweenWaves.text = "";
         gameOverText.text = "";
+        for (int i = 0; i < 15; i++) // Initialisation de characters[] = {1,2,3,...,15};
+        {
+            characters[i,i] = i;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GlobalTimer > -0.1)
+        if (GlobalTimer > 0) // Tant que la partie est en cours
         {
+            if (prevWave < wavePassed)
+            {
+                SwapCharacters(characters);
+                prevWave = wavePassed;
+            }
             // Récupérer les interactions de l'utilisateur
             // ... Les traiter
             // ... Faire agir l'environnement alentour en conséquence
@@ -44,29 +57,31 @@ public class Main : MonoBehaviour
             // ... Traiter les positions
             // ... Actions des bots ici
             // Update du nombre de proies restantes
-            if (GlobalTimer > 0.00001)
-            {
-                Timer();
-            }
-            else
-            {
-                PrintEndScreen();
-            }
+            UpdateTimer();
         }
-        // Fin de la boucle si le timer est désactivé
-        // printEndScreeen();
-        // Afficher un écran de fin de jeu ? (Ce serait cool)
+        else
+        {
+            PrintEndScreen();
+        }
+    }
+
+    private void SwapCharacters(int[,] characters)
+    {
+        Debug.Log(characters);
     }
 
     private void PrintEndScreen()
     {
-        time.text = ""; waveText.text = ""; waitingBetweenWaves.text = "";
-        Debug.Log("[GAME STATUS UPDATE] -> GAME FINISHED");
-        gameOverText.text = "Partie terminée!";
-        GlobalTimer = -1;
+        if (GlobalTimer > -1 && GlobalTimer < 0)
+        {
+            time.text = ""; waveText.text = ""; waitingBetweenWaves.text = "";
+            Debug.Log("[GAME STATUS UPDATE] -> GAME FINISHED");
+            gameOverText.text = "Partie terminée!";
+            GlobalTimer = -1; // Fin temporaire du jeu, absolument pas finale X)
+        }
     }
 
-    private void Timer()
+    private void UpdateTimer()
     {
         if (timer > 0)
         {
@@ -86,10 +101,6 @@ public class Main : MonoBehaviour
                 isWaveDelayCounterStarted = true;
                 wavePassed++;
                 waveText.text = "Vagues passées : " + wavePassed.ToString() + "/9";
-                if(wavePassed == 8)
-                {
-                    GlobalTimer = timer + 20f; // Pour la synchronisation avec la dernière vague
-                }
             }
             if (durationBetweenWaves > 0) {
                 durationBetweenWaves -= Time.deltaTime;

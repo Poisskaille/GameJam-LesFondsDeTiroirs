@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 645304291}
   - component: {fileID: 645304290}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ScreenOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,6 @@ MonoBehaviour:
   time: {fileID: 434267063}
   waitingBetweenWaves: {fileID: 906620715}
   gameOverText: {fileID: 218812369}
-  characters: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   numberOfWolves: 3
 --- !u!4 &645304291
 Transform:

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+    public const int NUMBER_OF_PLAYERS = 15;
     private const int MAX_GAME_DURATION = 40;      // 3 minutes / partie
     private const int WAVE_TIMER = 20;              // 20 secondes / vague
     private const float TIMING_BETWEEN_WAVES = 3f;  // 3 secondes de pause entre les vagues
@@ -14,6 +15,8 @@ public class Main : MonoBehaviour
     public float timer;
     private int wavePassed = 0;
     private int prevWave = 0;
+    private const int sheepRoleID = 1;
+    private const int wolfRoleID = 2;
     private int seconds;
     private float durationBetweenWaves;
     public Text waveText;
@@ -21,7 +24,7 @@ public class Main : MonoBehaviour
     public Text waitingBetweenWaves;
     public Text gameOverText;
     // --- Venant d'autres fichiers dans la version finale --- //
-    public int[,] characters = new int[15,15];
+    public int[,] characters = new int [15,2];
     public int numberOfWolves = 3;
 
     // Start is called before the first frame update
@@ -33,9 +36,11 @@ public class Main : MonoBehaviour
         waveText.text = "Vagues passées : 0/9";
         waitingBetweenWaves.text = "";
         gameOverText.text = "";
-        for (int i = 0; i < 15; i++) // Initialisation de characters[] = {1,2,3,...,15};
+        var rand = new System.Random();
+        for (int i = 0; i < NUMBER_OF_PLAYERS; i++) // Initialisation de characters[i,j] = { {1,2,3,...,15}, {roleId,roleId,...,roleID} };
         {
-            characters[i,i] = i;
+            characters[i, 0] = i;
+            characters[i, 1] = rand.Next(1,2);
         }
     }
 
@@ -67,7 +72,10 @@ public class Main : MonoBehaviour
 
     private void SwapCharacters(int[,] characters)
     {
-        Debug.Log(characters);
+        for (int i = 0; i < characters.GetLength(0); i++)
+        {
+            Debug.Log("ID : " + characters[i, 0] + " ROLE ID : " + characters[i, 1]);
+        }
     }
 
     private void PrintEndScreen()

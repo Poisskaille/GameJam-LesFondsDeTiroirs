@@ -3,7 +3,12 @@ guid: d674861385aec264ab38982b1b562a0a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Wolf_Bl
+    second: {fileID: 2100000, guid: a4b890e62899c774c9516136b6ef96b9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

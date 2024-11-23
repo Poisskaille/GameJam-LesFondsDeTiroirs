@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6921600894598817587}
   - component: {fileID: 3768065864551399662}
   - component: {fileID: 8024136391087555983}
+  - component: {fileID: 4682742092972948}
   m_Layer: 7
   m_Name: AIHunter
   m_TagString: Untagged
@@ -146,13 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c235afca8d2997f41a369fcaff25e5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  role: 
-  chickenList: []
-  wolfList: []
+  teamRepartition: {fileID: 4682742092972948}
   target: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
-  chickenMaterial: {fileID: 2100000, guid: 42175121f045a504486b907f58357fd9, type: 2}
-  wolfMaterial: {fileID: 2100000, guid: 529b74f2d31ab6040be4c639b5939662, type: 2}
 --- !u!54 &8024136391087555983
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -180,3 +177,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4682742092972948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824731302842451343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac315ca5e4555aa4eac8429790ec91e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  role: 
+  chickenList: []
+  wolfList: []
+  chickenMaterial: {fileID: 2100000, guid: 42175121f045a504486b907f58357fd9, type: 2}
+  wolfMaterial: {fileID: 2100000, guid: 529b74f2d31ab6040be4c639b5939662, type: 2}

@@ -123,8 +123,6 @@ public class Main : MonoBehaviour
     {
         time.text = ""; waveText.text = ""; waitingBetweenWaves.text = "";
         gameOverText.text = "Partie terminee!";
-        Application.Quit();
-        GlobalTimer = -1; // Façon de terminer la partie dans le play mode de l'editeur de Unity
     }
 
     private void UpdateTimer()

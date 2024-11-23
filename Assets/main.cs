@@ -154,16 +154,17 @@ public class Main : MonoBehaviour
                 seconds = (int)pauseBetweenWaves + 1;
                 waitingBetweenWaves.text = seconds.ToString();
                 // Actualisation de la position du texte "Vague : n/7"
-                xPos += .6f;
+                xPos += 0.6f;
                 waveText.rectTransform.position = new Vector3 (xPos, waveText.rectTransform.position.y, waveText.rectTransform.position.z);
             }
             else
             {
-                waveText.rectTransform.position = new Vector3 (-633f, 721f, 0);
+                waveText.rectTransform.position = new Vector3(0f, waveText.rectTransform.position.y, waveText.rectTransform.position.z);
                 time.fontSize = 120;
                 waitingBetweenWaves.text = "";
                 timer = WAVE_TIMER;
                 isWaveDelayCounterStarted = false;
+                xPos = 0f;
             } // Fin des 3 secondes d'attente entre les vagues, passage à la prochaine vague ou fin de programme
         }
     }

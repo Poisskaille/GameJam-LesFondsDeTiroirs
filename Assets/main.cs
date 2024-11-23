@@ -11,7 +11,7 @@ public class Main : MonoBehaviour
     // -- Constantes --- //
     public const int SHEEP_ROLE_ID = 1;
     public const int WOLF_ROLE_ID = 2;
-    public const int MAX_GAME_DURATION = 100;      // 20 secondes / vague -> 5 vagues donc 100 secondes / partie
+    public const int MAX_GAME_DURATION = 140;      // 20 secondes / vague -> 5 vagues donc 100 secondes / partie
     public const int WAVE_TIMER = 20;              // 20 secondes / vague
     public const float TIMING_BETWEEN_WAVES = 3f;  // 3 secondes de pause entre les vagues
     // --- Variables --- //

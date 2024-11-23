@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Main : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class Main : MonoBehaviour
     // -- Constantes --- //
     public const int SHEEP_ROLE_ID = 1;
     public const int WOLF_ROLE_ID = 2;
-    public const int MAX_GAME_DURATION = 100;      // 20 secondes / vague -> 5 vagues donc 100 secondes / partie
+    public const int MAX_GAME_DURATION = 140;      // 20 secondes / vague -> 5 vagues donc 100 secondes / partie
     public const int WAVE_TIMER = 20;              // 20 secondes / vague
     public const float TIMING_BETWEEN_WAVES = 3f;  // 3 secondes de pause entre les vagues
     // --- Variables --- //
@@ -22,16 +22,17 @@ public class Main : MonoBehaviour
     public float GlobalTimer;
     public float timer;
     // --- Texts --- //
-    public Text waveText;
-    public Text time;
-    public Text waitingBetweenWaves;
-    public Text gameOverText;
+    public TMP_Text waveText;
+    public TMP_Text time;
+    public TMP_Text waitingBetweenWaves;
+    public TMP_Text gameOverText;
     // --- Variables exclusives à ce fichier (privées) --- //
     private bool isWaveDelayCounterStarted = false;
     private int currentWave = 1;
     private int prevWave = 0;
     private int seconds;
     private float pauseBetweenWaves;
+    private float xPos = 0f;
 
     // --- FONCTIONS D'INITIALISATION --- //
     private void InitTimers()
@@ -42,7 +43,7 @@ public class Main : MonoBehaviour
     }                      // Initialise les durées variables du programme
     private void InitTexts()
     {
-        waveText.text = "Vague : 1/5";
+        waveText.text = "Vague : 1/7";
         waitingBetweenWaves.text = "";
         gameOverText.text = "";
     }                       // Initialise les textes
@@ -80,7 +81,6 @@ public class Main : MonoBehaviour
         {
             if (prevWave < currentWave) // S'éxécute au changement de vague
             {
-                Debug.Log("Changement de vague");
                 UpdateCharacters();
                 prevWave = currentWave;
             }
@@ -101,26 +101,28 @@ public class Main : MonoBehaviour
 
     private void UpdateCharacters()
     {
-        if (numberOfPlayers > 6)
+        if(numberOfPlayers > 9)
         {
-            Debug.Log("Personnages avant changement : " + numberOfPlayers);
             numberOfPlayers -= 3;
-            Debug.Log("Personnages après changement : " + numberOfPlayers);
-            characters = new int[numberOfPlayers, 2]; // 15, 12, 9, 6, 3, Match à mort
-            InitCharacters(characters);
+        }
+        else if (numberOfPlayers > 3 && numberOfPlayers <= 9)
+        {
+            numberOfPlayers -= 2;
         }
         else
         {
-            // Match à mort, dernière vague. A parmetrer.
-            numberOfPlayers -= 3;
+            Debug.Log("Match à mort ici"); // A parametrer
+            numberOfWolves = 1;
             PrintEndScreen();
         }
+        characters = new int[numberOfPlayers, 2]; // 15, 12, 9, 7, 5, 3, Match à mort
+        InitCharacters(characters);
     }
 
     private void PrintEndScreen()
     {
         time.text = ""; waveText.text = ""; waitingBetweenWaves.text = "";
-        gameOverText.text = "Partie terminée!";
+        gameOverText.text = "Partie terminee!";
         Application.Quit();
         GlobalTimer = -1; // Façon de terminer la partie dans le play mode de l'editeur de Unity
     }
@@ -138,23 +140,32 @@ public class Main : MonoBehaviour
         {
             if (!isWaveDelayCounterStarted)
             {
-                time.text = "Prépare toi...";
+                time.fontSize = 90;
+                time.text = "Prepare toi...";
                 pauseBetweenWaves = 3f;
                 isWaveDelayCounterStarted = true;
+                waveText = GameObject.Find("wavePassedTextTMP").GetComponent<TMP_Text>();
                 currentWave++;
-                waveText.text = "Vague : " + currentWave.ToString() + "/5";
+                waveText.text = "Vague : " + currentWave.ToString() + "/7";
             } // Reset la durée d'attente à chaque fin de boucle
-            if (pauseBetweenWaves > 0) {
+            if (pauseBetweenWaves > 0)
+            {
                 pauseBetweenWaves -= Time.deltaTime;
                 seconds = (int)pauseBetweenWaves + 1;
                 waitingBetweenWaves.text = seconds.ToString();
-            }   // Affichage du texte "Prépare toi..." et "3...2...1"
-            else 
+                // Actualisation de la position du texte "Vague : n/7"
+                xPos += 20f ;
+                waveText.rectTransform.position = new Vector3 (xPos, waveText.rectTransform.position.y, waveText.rectTransform.position.z);
+            }
+            else
             {
+                waveText.rectTransform.position = new Vector3(0f, waveText.rectTransform.position.y, waveText.rectTransform.position.z);
+                time.fontSize = 120;
                 waitingBetweenWaves.text = "";
                 timer = WAVE_TIMER;
                 isWaveDelayCounterStarted = false;
-            }                            // Fin des 3 secondes d'attente entre les vagues, passage à la prochaine vague ou fin de programme
+                xPos = 0f;
+            } // Fin des 3 secondes d'attente entre les vagues, passage à la prochaine vague ou fin de programme
         }
     }
 }

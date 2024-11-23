@@ -43,7 +43,7 @@ public class Main : MonoBehaviour
     }                      // Initialise les durées variables du programme
     private void InitTexts()
     {
-        waveText.text = "Vague : 1/5";
+        waveText.text = "Vague : 1/7";
         waitingBetweenWaves.text = "";
         gameOverText.text = "";
     }                       // Initialise les textes
@@ -112,6 +112,7 @@ public class Main : MonoBehaviour
         else
         {
             Debug.Log("Match à mort ici"); // A parametrer
+            numberOfWolves = 1;
             PrintEndScreen();
         }
         characters = new int[numberOfPlayers, 2]; // 15, 12, 9, 7, 5, 3, Match à mort
@@ -139,20 +140,20 @@ public class Main : MonoBehaviour
         {
             if (!isWaveDelayCounterStarted)
             {
-                time.fontSize = 80;
+                time.fontSize = 90;
                 time.text = "Prepare toi...";
                 pauseBetweenWaves = 3f;
                 isWaveDelayCounterStarted = true;
                 waveText = GameObject.Find("wavePassedTextTMP").GetComponent<TMP_Text>();
                 currentWave++;
-                waveText.text = "Vague : " + currentWave.ToString() + "/5";
+                waveText.text = "Vague : " + currentWave.ToString() + "/7";
             } // Reset la durée d'attente à chaque fin de boucle
             if (pauseBetweenWaves > 0)
             {
                 pauseBetweenWaves -= Time.deltaTime;
                 seconds = (int)pauseBetweenWaves + 1;
                 waitingBetweenWaves.text = seconds.ToString();
-                // Actualisation de la position du texte "Vague : n/5"
+                // Actualisation de la position du texte "Vague : n/7"
                 xPos += .6f;
                 waveText.rectTransform.position = new Vector3 (xPos, waveText.rectTransform.position.y, waveText.rectTransform.position.z);
             }
@@ -163,7 +164,7 @@ public class Main : MonoBehaviour
                 waitingBetweenWaves.text = "";
                 timer = WAVE_TIMER;
                 isWaveDelayCounterStarted = false;
-            }                            // Fin des 3 secondes d'attente entre les vagues, passage à la prochaine vague ou fin de programme
+            } // Fin des 3 secondes d'attente entre les vagues, passage à la prochaine vague ou fin de programme
         }
     }
 }

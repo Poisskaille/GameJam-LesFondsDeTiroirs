@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class Main : MonoBehaviour
     public TMP_Text time;
     public TMP_Text waitingBetweenWaves;
     public TMP_Text gameOverText;
+    public Button LoadMainMenu;
     // --- Variables exclusives à ce fichier (privées) --- //
     private bool isWaveDelayCounterStarted = false;
     private int currentWave = 1;
@@ -46,6 +49,7 @@ public class Main : MonoBehaviour
         waveText.text = "Vague : 1/7";
         waitingBetweenWaves.text = "";
         gameOverText.text = "";
+        LoadMainMenu.gameObject.SetActive(false);
     }                       // Initialise les textes
     private void InitCharacters(int[,] characters)
     {
@@ -123,8 +127,13 @@ public class Main : MonoBehaviour
     {
         time.text = ""; waveText.text = ""; waitingBetweenWaves.text = "";
         gameOverText.text = "Partie terminee!";
-    }
+        LoadMainMenu.gameObject.SetActive(true);
 
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     private void UpdateTimer()
     {
         if (timer > 0)
